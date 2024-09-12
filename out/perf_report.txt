@@ -1,0 +1,35 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 22  of event 'cycles:P'
+# Event count (approx.): 4359742
+#
+# Overhead  Command    Shared Object         Symbol                          
+# ........  .........  ....................  ................................
+#
+    14.25%  project01  ld-linux-x86-64.so.2  [.] _dl_lookup_symbol_x
+     7.38%  project01  [unknown]             [k] 0xffffffffaa9bbd4a
+     7.33%  project01  [unknown]             [k] 0xffffffffaaa24959
+     7.24%  project01  [unknown]             [k] 0xffffffffaaa2cab0
+     7.19%  project01  [unknown]             [k] 0xffffffffaa6fd886
+     7.12%  project01  [unknown]             [k] 0xffffffffaab38aa2
+     7.02%  project01  [unknown]             [k] 0xffffffffaaa1c39a
+     6.90%  project01  libc.so.6             [.] _IO_file_setbuf@@GLIBC_2.2.5
+     6.87%  project01  [unknown]             [k] 0xffffffffaaac2618
+     6.78%  project01  [unknown]             [k] 0xffffffffaaa1e85b
+     6.64%  project01  ld-linux-x86-64.so.2  [.] _dl_runtime_resolve_xsavec
+     6.54%  project01  ld-linux-x86-64.so.2  [.] strcmp
+     5.93%  project01  [unknown]             [k] 0xffffffffaadeb69a
+     2.31%  project01  [unknown]             [k] 0xffffffffab798b76
+     0.43%  project01  [unknown]             [k] 0xffffffffab79609b
+     0.06%  perf-exec  [unknown]             [k] 0xffffffffaa60e012
+     0.01%  perf-exec  [unknown]             [k] 0xffffffffaa610c4c
+     0.00%  perf-exec  [unknown]             [k] 0xffffffffaa615a1c
+     0.00%  perf-exec  [unknown]             [k] 0xffffffffaa6c4b04
+
+
+#
+# (Tip: For memory address profiling, try: perf mem record / perf mem report)
+#

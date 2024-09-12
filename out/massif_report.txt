@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+Command:            ./bin/project01
+Massif arguments:   --massif-out-file=out/massif.out
+ms_print arguments: out/massif.out
+--------------------------------------------------------------------------------
+
+
+    KB
+74.05^                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+     |                                                                       #
+   0 +----------------------------------------------------------------------->Mi
+     0                                                                   1.891
+
+Number of snapshots: 9
+ Detailed snapshots: [5 (peak)]
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  0              0                0                0             0            0
+  1      1,956,223           73,736           73,728             8            0
+  2      1,961,462           74,768           74,752            16            0
+  3      1,968,502           75,800           75,776            24            0
+  4      1,969,707           75,824           75,780            44            0
+  5      1,981,403           75,824           75,780            44            0
+99.94% (75,780B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->97.24% (73,728B) 0x4917401: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+| ->97.24% (73,728B) 0x400571E: call_init.part.0 (dl-init.c:74)
+|   ->97.24% (73,728B) 0x4005823: call_init (dl-init.c:120)
+|     ->97.24% (73,728B) 0x4005823: _dl_init (dl-init.c:121)
+|       ->97.24% (73,728B) 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+|         
+->02.70% (2,048B) 0x4B621A4: _IO_file_doallocate (filedoalloc.c:101)
+| ->02.70% (2,048B) 0x4B72513: _IO_doallocbuf (genops.c:347)
+|   ->01.35% (1,024B) 0x4B6F873: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:486)
+|   | ->01.35% (1,024B) 0x4B725C1: _IO_default_uflow (genops.c:362)
+|   |   ->01.35% (1,024B) 0x4B491B3: __vfscanf_internal (vfscanf-internal.c:676)
+|   |     ->01.35% (1,024B) 0x4B3CB05: __isoc23_scanf (isoc23_scanf.c:30)
+|   |       ->01.35% (1,024B) 0x10921F: main (main.cpp:8)
+|   |         
+|   ->01.35% (1,024B) 0x4B6FF7F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+|     ->01.35% (1,024B) 0x4B70A9E: _IO_new_file_xsputn (fileops.c:1244)
+|       ->01.35% (1,024B) 0x4B70A9E: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+|         ->01.35% (1,024B) 0x4B63A01: fwrite (iofwrite.c:39)
+|           ->01.35% (1,024B) 0x49B1CA4: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+|             ->01.35% (1,024B) 0x49B202A: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+|               ->01.35% (1,024B) 0x1091ED: main (main.cpp:5)
+|                 
+->00.01% (4B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  6      1,981,403            2,088            2,052            36            0
+  7      1,982,445            1,056            1,028            28            0
+  8      1,982,479               24                4            20            0

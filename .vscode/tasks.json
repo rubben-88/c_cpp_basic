@@ -1,0 +1,68 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // Build
+        {
+            "label": "build (debug)",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/build && cmake -DCMAKE_BUILD_TYPE=Debug .. && make && mv project01 ../bin/ && cd .. && rm -rf build/*",
+            "problemMatcher": ["$gcc"],
+        },
+        {
+            "label": "build (release)",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && mv project01 ../bin/ && cd .. && rm -rf build/*",
+            "problemMatcher": ["$gcc"],
+        },
+
+        // Run
+        {
+            "label": "run",
+            "dependsOn": ["build (release)"],
+            "dependsOrder": "sequence",
+            "type": "shell",
+            "command": "./bin/project01",
+            "problemMatcher": []
+        },
+
+        // Debug
+        {
+            "label": "debug",
+            "dependsOn": ["build (debug)"],
+            "dependsOrder": "sequence",
+            "type": "shell",
+            "command": "rr record ./bin/project01 && rr replay -- -q",
+            "problemMatcher": []
+        },
+
+        // Detect leaks
+        {
+            "label": "detect leaks",
+            "dependsOn": ["build (debug)"],
+            "dependsOrder": "sequence",
+            "type": "shell",
+            "command": "valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=out/valgrind-out.txt ./bin/project01",
+            "problemMatcher": []
+        },
+
+        // Profile memory
+        {
+            "label": "profile memory",
+            "dependsOn": ["build (debug)"],
+            "dependsOrder": "sequence",
+            "type": "shell",
+            "command": "valgrind --tool=massif --massif-out-file=out/massif.out ./bin/project01 && massif-visualizer out/massif.out",
+            "problemMatcher": []
+        },
+
+        // Profile execution time
+        {
+            "label": "profile time",
+            "dependsOn": ["build (debug)"],
+            "dependsOrder": "sequence",
+            "type": "shell",
+            "command": "perf record -o out/perf.data -g ./bin/project01 && perf script -i out/perf.data | ./out/FlameGraph/stackcollapse-perf.pl > out/out.perf-folded && ./out/FlameGraph/flamegraph.pl out/out.perf-folded > out/perf.svg && brave-browser out/perf.svg",
+            "problemMatcher": []
+        },
+    ]
+}
