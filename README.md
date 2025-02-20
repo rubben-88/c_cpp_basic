@@ -303,6 +303,63 @@ To make our life easier, we use tasks in VSCode. Create a folder `.vscode` with 
 
 ## Section 4: debugging
 
+### lazy way:
+
+This section was added later and is an extra part to the complete tutorial. It was added to provide functionality to the VS Code interactive 'Run - Start Debugging' (and 'Run - Run Without Debugging').
+
+Add to the .vscode folder following file:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (Debug Build)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/project01",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "build (debug)",
+            "miDebuggerArgs": "",
+            "logging": {
+                "engineLogging": false,
+                "programOutput": true,
+                "trace": true
+            },
+            "serverLaunchTimeout": 10000,
+            "filterStderr": true,
+            "filterStdout": false
+        },
+        {
+            "name": "Run (Release Build)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/project01",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "preLaunchTask": "build (release)"
+        }
+    ]
+}
+```
+
+### extensive way:
+
 As an example, we will rewrite our main.cpp file to have a bug!
 
 ```cpp

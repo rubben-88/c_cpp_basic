@@ -1,0 +1,2 @@
+This file is used to add the build folder to git.
+Git doesn't automatically include empty folders.
